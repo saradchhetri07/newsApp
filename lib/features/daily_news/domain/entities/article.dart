@@ -7,7 +7,7 @@ class ArticleEntity extends Equatable {
   final String? description;
   final String? url;
   final String? urlToImage;
-  final String? publisedAt;
+  final String? publishedAt;
   final String? content;
 
   const ArticleEntity(
@@ -17,12 +17,12 @@ class ArticleEntity extends Equatable {
       this.description,
       this.url,
       this.urlToImage,
-      this.publisedAt,
+      this.publishedAt,
       this.content});
 
   @override
   // TODO: implement props
   List<Object?> get props {
-    return [id, author, description, url, urlToImage, publisedAt, content];
+    return [id, author, description, url, urlToImage, publishedAt, content];
   }
 }
