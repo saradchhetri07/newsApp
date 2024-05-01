@@ -9,6 +9,8 @@ import 'package:news_app/features/daily_news/presentation/bloc/article/remote/re
 import 'package:news_app/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
 import 'package:news_app/features/daily_news/presentation/widgets/article_tile.dart';
 
+import '../../../../../core/utils/appBar.dart';
+
 class DailyNews extends StatefulWidget {
   const DailyNews({super.key});
 
@@ -20,7 +22,8 @@ class _DailyNewsState extends State<DailyNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: buildCustomAppBar(
+          onShowSavedArticles: () => _onShowSavedArticlesViewTapped(context)),
       body: _buildBody(),
     );
   }
@@ -55,28 +58,29 @@ class _DailyNewsState extends State<DailyNews> {
   }
 
   void _onArticlePressed(ArticleEntity article, BuildContext context) {
-    Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+    print("came inside _onarticlepressed");
+    Navigator.pushNamed(context, '/articleDetails', arguments: article);
   }
 
-  _buildAppBar() {
-    return AppBar(
-      title: const Text(
-        "Daily News",
-        style: TextStyle(color: Colors.black),
-      ),
-      actions: [
-        GestureDetector(
-            onTap: () => _onShowSavedArticlesViewTapped(context),
-            child: const Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Icon(
-                Icons.bookmark,
-                color: Colors.black,
-              ),
-            ))
-      ],
-    );
-  }
+  // _buildAppBar() {
+  //   return AppBar(
+  //     title: const Text(
+  //       "Daily News",
+  //       style: TextStyle(color: Colors.black),
+  //     ),
+  //     actions: [
+  //       GestureDetector(
+  //           onTap: () => _onShowSavedArticlesViewTapped(context),
+  //           child: const Padding(
+  //             padding: const EdgeInsets.symmetric(horizontal: 8.0),
+  //             child: Icon(
+  //               Icons.bookmark,
+  //               color: Colors.black,
+  //             ),
+  //           ))
+  //     ],
+  //   );
+  // }
 
   void _onShowSavedArticlesViewTapped(BuildContext context) {
     Navigator.pushReplacementNamed(context, '/SavedArticles');
